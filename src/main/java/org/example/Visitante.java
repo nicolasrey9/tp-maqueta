@@ -1,10 +1,10 @@
 package org.example;
 
-public class Usuario {
+public class Visitante {
   private DatosPersonales datosPersonales = null;
   private TipoUsuario tipo = TipoUsuario.VISUALIZADOR;
 
-  public Usuario() {}
+  public Visitante() {}
 
   public void visualizar() {
     //TODO logica para visualizar
@@ -12,10 +12,10 @@ public class Usuario {
 
   public void subirHechos() {
     //TODO logica para subir
+    if(this.tipo != TipoUsuario.CONTRIBUYENTE) this.tipo = TipoUsuario.CONTRIBUYENTE;
   }
 
   public void darseAConocer(DatosPersonales datosPersonales) {
-    if(tipo == TipoUsuario.CONTRIBUYENTE) throw new RuntimeException("Este usuario ya se dio a conocer");
     this.datosPersonales = datosPersonales;
     this.tipo = TipoUsuario.CONTRIBUYENTE;
   }
