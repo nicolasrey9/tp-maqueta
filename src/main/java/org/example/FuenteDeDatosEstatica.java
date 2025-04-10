@@ -10,10 +10,12 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
+
+//TODO: hacer que obtenga el separador del CSV, para que tolere CSVs separados por ";"
 public class FuenteDeDatosEstatica {
 
-  private static final List<String> titulos = Arrays.asList("event", "name", "titulo");
-  private static final List<String> descripciones = Arrays.asList("desc", "descripcion");
+  private static final List<String> titulos = Arrays.asList("event", "name", "titulo", "title");
+  private static final List<String> descripciones = Arrays.asList("desc", "descripcion", "description");
   private static final List<String> categorias = Arrays.asList("tipo", "grupo", "categoria", "causa");
   private static final List<String> latitudes = Arrays.asList("lat", "latitude", "latitud");
   private static final List<String> longitudes = Arrays.asList("long", "lng", "lon", "logitude", "longitud");
@@ -31,17 +33,18 @@ public class FuenteDeDatosEstatica {
         String[] line;
         line = csvReader.readNext();
 
+        // son -1 en caso de NOT FOUND
         short posicionTitulo = buscarColumna(line, true, titulos.toArray(new String[0]));
         short descripcion = buscarColumna(line, true, descripciones.toArray(new String[0]));
         short categoria = buscarColumna(line, true, categorias.toArray(new String[0]));
         short latitud = buscarColumna(line, false,latitudes.toArray(new String[0]));
         short longitud = buscarColumna(line, false,longitudes.toArray(new String[0]));
-        short fecha = buscarColumna(line, false, fechas.toArray(new String[0]));
+        short fecha = buscarColumna(line, true, fechas.toArray(new String[0]));
 
 
         // iteraciones se usa solo para el test, BORRAR
         int iteraciones = 0;
-        while ((line = csvReader.readNext()) != null && iteraciones < 100) {
+        while ((line = csvReader.readNext()) != null && iteraciones < 2) {
           System.out.println(Arrays.toString(line));
           iteraciones ++;
         }
@@ -57,8 +60,6 @@ public class FuenteDeDatosEstatica {
   private static boolean esArchivoCSV(Path rutaArchivo) {
     return rutaArchivo.getFileName().toString().endsWith(".csv");
   }
-
-
 
 
   private static short buscarColumna(String[] encabezado, boolean modoFlexible, String... posiblesNombres) {
