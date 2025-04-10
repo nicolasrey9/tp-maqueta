@@ -12,6 +12,8 @@ public class Hecho {
   private LocalDate fechaDeAcontecimiento;
   private LocalDateTime fechaDeCarga;
   private Origen origen;
+  private int cantidadDeSolicitudes;
+  private boolean esVeridico;
 
 
   public Hecho(String titulo, String descripcion, String categoria,
@@ -31,38 +33,75 @@ public class Hecho {
                Ubicacion ubicacion, LocalDate fechaDeAcontecimiento,
                Origen origen) {
     this(titulo, descripcion, categoria, null, ubicacion,
-          fechaDeAcontecimiento, origen);
+        fechaDeAcontecimiento, origen);
+  }
+
+  public void solicitarEliminacion(String textoJustificativo) {
+    if (textoJustificativo.length() < 500) {
+      throw new RuntimeException("El texto justificativo no cumple con los 500 caracteres");
+    }
+    new SolicitudEliminacion(this, textoJustificativo);
+    cantidadDeSolicitudes++; //PROVISORIO
+  }
+
+  public void eliminarHecho() {
+    this.esVeridico = false;
+    //this.eliminarseDeColecciones();
+    //FALTA MANEJO DE SOLICITUDES
   }
 
   // getters
 
-  public String getTitulo() { return titulo; }
 
-  public String getDescripcion() { return descripcion; }
+  public String getTitulo() {
+    return titulo;
+  }
 
-  public String getCategoria() { return categoria; }
+  public String getDescripcion() {
+    return descripcion;
+  }
 
-  public ContenidoMultimedia getContenidoMultimedia() { return contenidoMultimedia; }
+  public String getCategoria() {
+    return categoria;
+  }
 
-  public Ubicacion getUbicacion() { return ubicacion; }
+  public ContenidoMultimedia getContenidoMultimedia() {
+    return contenidoMultimedia;
+  }
 
-  public LocalDate getFechaDeAcontecimiento() { return fechaDeAcontecimiento; }
+  public Ubicacion getUbicacion() {
+    return ubicacion;
+  }
 
-  public LocalDateTime getFechaDeCarga() { return fechaDeCarga; }
+  public LocalDate getFechaDeAcontecimiento() {
+    return fechaDeAcontecimiento;
+  }
 
-  public Origen getOrigen() { return origen; }
+  public LocalDateTime getFechaDeCarga() {
+    return fechaDeCarga;
+  }
 
+  public Origen getOrigen() {
+    return origen;
+  }
   // setters
 
-  protected void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-  protected void setCategoria(String categoria) { this.categoria = categoria; }
+  protected void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
+
+  protected void setCategoria(String categoria) {
+    this.categoria = categoria;
+  }
 
   protected void setContenidoMultimedia(ContenidoMultimedia contenidoMultimedia) {
     this.contenidoMultimedia = contenidoMultimedia;
   }
 
-  protected void setUbicacion(Ubicacion ubicacion) { this.ubicacion = ubicacion; }
+  protected void setUbicacion(Ubicacion ubicacion) {
+    this.ubicacion = ubicacion;
+  }
 
   protected void setFechaDeAcontecimiento(LocalDate fechaDeAcontecimiento) {
     this.fechaDeAcontecimiento = fechaDeAcontecimiento;
@@ -75,7 +114,5 @@ public class Hecho {
   protected void setOrigen(Origen origen) {
     this.origen = origen;
   }
-
-
 
 }
