@@ -13,6 +13,7 @@ public class Hecho {
   private LocalDateTime fechaDeCarga;
   private Origen origen;
   private int cantidadDeSolicitudes;
+
   private boolean esVeridico;
 
 
@@ -50,8 +51,8 @@ public class Hecho {
     //FALTA MANEJO DE SOLICITUDES
   }
 
-  // getters
 
+  // getters
 
   public String getTitulo() {
     return titulo;
@@ -84,8 +85,8 @@ public class Hecho {
   public Origen getOrigen() {
     return origen;
   }
-  // setters
 
+  // setters
 
   protected void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
@@ -115,4 +116,7 @@ public class Hecho {
     this.origen = origen;
   }
 
+  public boolean esVeridico() {
+    return esVeridico;
+  }
 }

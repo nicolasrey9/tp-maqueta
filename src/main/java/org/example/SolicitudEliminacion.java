@@ -1,19 +1,42 @@
 package org.example;
 
+import java.time.LocalDateTime;
+
 public class SolicitudEliminacion {
   private final Hecho hecho;
-  private final String motivo;
+  private final String justificacion;
+  private final LocalDateTime fecha;
+  private EstadoSolicitud estado;
 
-  public SolicitudEliminacion(Hecho hecho, String motivo) {
+  public SolicitudEliminacion(Hecho hecho, String justificacion) {
+    if (justificacion.length() < 500) {
+      throw new IllegalArgumentException("La justificación debe tener al menos 500 caracteres");
+    }
     this.hecho = hecho;
-    this.motivo = motivo;
+    this.justificacion = justificacion;
+    this.fecha = LocalDateTime.now();
+    this.estado = EstadoSolicitud.PENDIENTE;
   }
 
-  public Hecho getHecho() {
-    return hecho;
+  // Getters
+  public Hecho getHecho() { return hecho; }
+  public String getJustificacion() { return justificacion; }
+  public EstadoSolicitud getEstado() { return estado; }
+
+  // Métodos para el administrador??
+
+  // Falta ver como vamos a manejar las solicitudes,
+  // se me ocurre crear una lista con todas las
+  // solicitudes que accedan los admins.
+  //tambien hay que preguntar como es el manejo de spam en
+  //las solicitudes.
+
+  public void aceptar() {
+    this.estado = EstadoSolicitud.ACEPTADA;
+    hecho.eliminarHecho(); // Marca el hecho como oculto
   }
 
-  public String getMotivo() {
-    return motivo;
+  public void rechazar() {
+    this.estado = EstadoSolicitud.RECHAZADA;
   }
 }
