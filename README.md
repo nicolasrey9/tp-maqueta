@@ -5,7 +5,9 @@ poseen el mismo comportamiento (ninguno hace algo que el otro no pueda, solo cam
 ya ha aportado información al sistema) y a su vez me parece que es un requerimiento que un visualizador 
 pueda pasar a ser contribuyente.
 
-
+Preguntar bien sobre como será el manejo de solicitudes de eliminacion, hay muchas dudas sobre cómo será el mismo,
+ya sea por los spams, por los accesos de los admins, por no saber aun donde va almacenada nuestra info
+tomada del csv y demás. Hay que preguntar todo eso
 
 
 -------------------------------------------------------------------------------------------------------------------------
