@@ -113,6 +113,11 @@ public class FuenteDeDatosEstatica {
     return -1;  // manejo de errores
   }
 
+  //FALTARÍA COMENZAR LA LÓGICA DE A DONDE VA CADA HECHO
+  //DEBEMOS PENSAR SI ES TRABAJO DEL HECHO, DE LA FUENTE O DE LA COLECCIÓN
+  // A DONDE VA A PARAR CADA UNO DE LOS HECHOS
+
+
 
 
 

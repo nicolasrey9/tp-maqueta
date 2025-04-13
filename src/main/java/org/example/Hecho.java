@@ -13,7 +13,6 @@ public class Hecho {
   private LocalDateTime fechaDeCarga;
   private Origen origen;
   private int cantidadDeSolicitudes;
-
   private boolean esVeridico;
 
 

@@ -9,9 +9,9 @@ public class SolicitudEliminacion {
   private EstadoSolicitud estado;
 
   public SolicitudEliminacion(Hecho hecho, String justificacion) {
-    if (justificacion.length() < 500) {
-      throw new IllegalArgumentException("La justificación debe tener al menos 500 caracteres");
-    }
+//    if (justificacion.length() < 500) {
+//      throw new IllegalArgumentException("La justificación debe tener al menos 500 caracteres");
+//    } LÓGICA REPETIDA EN HECHO
     this.hecho = hecho;
     this.justificacion = justificacion;
     this.fecha = LocalDateTime.now();
