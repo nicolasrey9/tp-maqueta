@@ -16,6 +16,8 @@ public class SolicitudEliminacion {
     this.justificacion = justificacion;
     this.fecha = LocalDateTime.now();
     this.estado = EstadoSolicitud.PENDIENTE;
+
+    this.enviarSoliAlHecho(this.hecho);
   }
 
   // Getters
@@ -37,6 +39,14 @@ public class SolicitudEliminacion {
   }
 
   public void rechazar() {
+    this.estado = EstadoSolicitud.RECHAZADA;
+  }
+
+  private void enviarSoliAlHecho(Hecho hecho) {
+    hecho.agregarSolicitud(this);
+  }
+
+  public void eliminarSolicitud() {
     this.estado = EstadoSolicitud.RECHAZADA;
   }
 }

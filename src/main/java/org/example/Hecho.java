@@ -2,6 +2,7 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Hecho {
   private final String titulo;
@@ -12,8 +13,8 @@ public class Hecho {
   private LocalDate fechaDeAcontecimiento;
   private LocalDateTime fechaDeCarga;
   private Origen origen;
-  private int cantidadDeSolicitudes;
   private boolean esVeridico;
+  private List<SolicitudEliminacion> solicitudes;
 
 
   public Hecho(String titulo, String descripcion, String categoria,
@@ -27,6 +28,7 @@ public class Hecho {
     this.origen = origen;
     this.contenidoMultimedia = contenidoMultimedia;
     this.fechaDeCarga = LocalDateTime.now();
+    //this.solicitudes = null; no sabría como incializarlo aún
   }
 
   public Hecho(String titulo, String descripcion, String categoria,
@@ -41,13 +43,17 @@ public class Hecho {
       throw new RuntimeException("El texto justificativo no cumple con los 500 caracteres");
     }
     new SolicitudEliminacion(this, textoJustificativo);
-    cantidadDeSolicitudes++; //PROVISORIO
   }
 
   public void eliminarHecho() {
     this.esVeridico = false;
+    solicitudes.forEach(SolicitudEliminacion::eliminarSolicitud);
+
     //this.eliminarseDeColecciones();
-    //FALTA MANEJO DE SOLICITUDES
+  }
+
+  public void agregarSolicitud(SolicitudEliminacion solicitud) {
+    solicitudes.add(solicitud);
   }
 
 
