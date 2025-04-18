@@ -2,6 +2,7 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Hecho {
@@ -28,7 +29,7 @@ public class Hecho {
     this.origen = origen;
     this.contenidoMultimedia = contenidoMultimedia;
     this.fechaDeCarga = LocalDateTime.now();
-    //this.solicitudes = null; no sabría como incializarlo aún
+    this.solicitudes = new ArrayList<>();
   }
 
   public Hecho(String titulo, String descripcion, String categoria,
@@ -38,12 +39,6 @@ public class Hecho {
         fechaDeAcontecimiento, origen);
   }
 
-  public void solicitarEliminacion(String textoJustificativo) {
-    if (textoJustificativo.length() < 500) {
-      throw new RuntimeException("El texto justificativo no cumple con los 500 caracteres");
-    }
-    new SolicitudEliminacion(this, textoJustificativo);
-  }
 
   public void eliminarHecho() {
     this.esVeridico = false;

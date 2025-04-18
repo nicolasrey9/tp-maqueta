@@ -6,13 +6,10 @@ public class Visitante {
 
   public Visitante() {}
 
-  public void visualizar() {
-    //TODO logica para visualizar
-  }
 
-  public void subirHechos() {
-    //TODO logica para subir
+  public void subirHecho() {
     if(this.tipo != TipoUsuario.CONTRIBUYENTE) this.tipo = TipoUsuario.CONTRIBUYENTE;
+    //TODO logica para subir
   }
 
   public void darseAConocer(DatosPersonales datosPersonales) {
